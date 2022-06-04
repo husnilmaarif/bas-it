@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
+import { auth } from "../Firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 function Navigasi() {
+  const [google, setGoogle] = useState("");
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user);
+        setGoogle(user.displayName);
+      }
+    });
+  });
+
   return (
     <Navbar bg="white" expand="sm" className="shadow">
       <Container>
@@ -50,7 +63,7 @@ function Navigasi() {
             </Button>
             <Nav.Link>
               <Link to="/login" className="link">
-                <PersonIcon />
+                <PersonIcon className="me-2" /> {google}
               </Link>
             </Nav.Link>
           </Nav>

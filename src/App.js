@@ -5,14 +5,18 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigasi from "./components/Navigasi";
 
 // pages
-import HomePage from "./pages/HomePage";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
     <Router>
       <Navigasi />
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
